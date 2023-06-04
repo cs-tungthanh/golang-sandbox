@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/cstungthanh/sandbox/infra"
+	"github.com/cstungthanh/sandbox/shared"
 )
 
 func SetInterval(cb func(), second time.Duration) {
@@ -15,8 +17,15 @@ func SetInterval(cb func(), second time.Duration) {
 
 func main() {
 	fmt.Println("Start App!!!!!!")
+	config, err := shared.LoadConfig(".")
+	if err != nil {
+		log.Fatal("Cannot load config: ", err)
+	}
 
-	adapter := infra.NewClient()
+	adapter := infra.NewRedisClient(infra.RedisClientOptions{
+		Host: config.RedisHost,
+		Port: config.RedisPort,
+	})
 	go adapter.Subscribe("cmd")
 	go adapter.Subscribe("cmd2")
 

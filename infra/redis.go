@@ -14,9 +14,14 @@ type RedisAdapter struct {
 	mutex        sync.Mutex
 }
 
-func NewClient() AdapterPort {
+type RedisClientOptions struct {
+	Host string
+	Port string
+}
+
+func NewRedisClient(opts RedisClientOptions) AdapterPort {
 	client := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
+		Addr: fmt.Sprintf("%s:%s", opts.Host, opts.Port),
 	})
 
 	return &RedisAdapter{
