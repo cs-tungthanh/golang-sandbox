@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/cstungthanh/sandbox/infra"
-	"github.com/cstungthanh/sandbox/shared"
+	"github.com/cstungthanh/sandbox/src/infra"
+	"github.com/cstungthanh/sandbox/src/shared"
 )
 
 func SetInterval(cb func(), second time.Duration) {
