@@ -6,6 +6,16 @@ SandBox to test everything, infra code
 
 ## Install protobuf
 
+### Install buf generate
+https://buf.build/docs/installation/
+```
+brew install bufbuild/buf/buf
+
+<!-- Init buf setting -->
+buf mod init
+
+<!-- Generate buf.gen.yaml to specify what protoc plugin you want to use -->
+```
 ```
 <!-- Install protobuf in your OS -->
 brew install protobuf
