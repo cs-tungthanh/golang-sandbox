@@ -1,7 +1,7 @@
 redis:
 	docker compose up -d
 
-app:
+run:
 	go run src/main.go
 
 gen:

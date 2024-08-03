@@ -1,23 +1,20 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"time"
 
 	"github.com/cstungthanh/sandbox/src/infra"
-	"github.com/cstungthanh/sandbox/src/shared"
+	"github.com/cstungthanh/sandbox/src/utils"
 )
 
-func SetInterval(cb func(), second time.Duration) {
-	for range time.Tick(time.Second * second) {
-		cb()
-	}
-}
-
 func main() {
-	fmt.Println("Start App!!!!!!")
-	config, err := shared.LoadConfig(".")
+	// go utils.PrintUsage()
+
+	fmt.Println(" =============== Start App ==================")
+	config, err := utils.LoadConfig(".")
 	if err != nil {
 		log.Fatal("Cannot load config: ", err)
 	}
@@ -34,11 +31,17 @@ func main() {
 		adapter.Unsubscribe("cmd2")
 	})
 
-	go SetInterval(func() {
+	ctx, cancel := context.WithCancel(context.Background())
+	go utils.SetInterval(ctx, func() {
 		fmt.Println("Send")
 		adapter.Publish("cmd", "hello cmd")
 		adapter.Publish("cmd2", "hello cmd2")
 	}, 3)
+
+	time.AfterFunc(5*time.Second, func() {
+		fmt.Println("Canceling context")
+		cancel()
+	})
 
 	for msg := range adapter.Message() {
 		fmt.Printf("Received message for : %s\n", msg)
