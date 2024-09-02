@@ -1,0 +1,15 @@
+basePath: /api/v1
+info:
+  contact:
+    email: cs.tungthanh@gmail.com
+    name: Julius
+    url: https://github.com/cs-tungthanh
+  description: This is a api for sandbox project.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Sandbox API DOCUMENTATION
+  version: v1.0.0
+paths: {}
+swagger: "2.0"

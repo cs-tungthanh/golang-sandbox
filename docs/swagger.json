@@ -1,0 +1,20 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a api for sandbox project.",
+        "title": "Sandbox API DOCUMENTATION",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Julius",
+            "url": "https://github.com/cs-tungthanh",
+            "email": "cs.tungthanh@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "v1.0.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {}
+}
