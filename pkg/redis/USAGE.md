@@ -7,23 +7,22 @@ func SetInterval(cb func(), second time.Duration) {
 	}
 }
 
-adapter := infra.NewClient()
-go adapter.Subscribe("cmd")
-go adapter.Subscribe("cmd2")
+redisPubsub, err := redis.NewRedisPubsub(&redis.RedisPubsubOpts{})
+err = redisPubsub.Subscribe("cmd")
+err = redisPubsub.Subscribe("cmd2")
 
 time.AfterFunc(10*time.Second, func() {
     fmt.Println("Unsubscribe cmd2")
-    adapter.Unsubscribe("cmd2")
+    redisPubsub.Unsubscribe("cmd2")
 })
 
 go SetInterval(func() {
     fmt.Println("Send")
-    adapter.Publish("cmd", "hello cmd")
-    adapter.Publish("cmd2", "hello cmd2")
+    err = redisPubsub.Publish("cmd", "hello cmd")
+    err = redisPubsub.Publish("cmd2", "hello cmd2")
 }, 3)
 
 for msg := range adapter.Message() {
     fmt.Printf("Received message for : %s\n", msg)
-
 }
 ```

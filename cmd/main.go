@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+
 	_ "github.com/cstungthanh/sandbox/docs"
 	"github.com/cstungthanh/sandbox/internal/routes"
 	"github.com/cstungthanh/sandbox/pkg/config"
@@ -21,9 +23,10 @@ import (
 // @BasePath /api/v1
 
 func main() {
+	ctx := context.Background()
 	cfg := config.LoadConfig(config.DefaultConfigLoaders())
 
-	r := routes.NewRouter(cfg)
+	r := routes.NewRouter(ctx, cfg)
 
 	// r.GET("/ping", func(c *gin.Context) {
 	// 	c.JSON(http.StatusOK, gin.H{

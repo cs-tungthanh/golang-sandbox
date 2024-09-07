@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"context"
 	"strings"
 
 	"github.com/cstungthanh/sandbox/docs"
@@ -29,7 +30,7 @@ func setupCORS(r *gin.Engine, cfg *config.Config) {
 	})
 }
 
-func NewRouter(cfg *config.Config) *gin.Engine {
+func NewRouter(ctx context.Context, cfg *config.Config) *gin.Engine {
 	docs.SwaggerInfo.Title = "Swagger API"
 	docs.SwaggerInfo.Description = "This is a swagger for API."
 	docs.SwaggerInfo.Version = "1.0"

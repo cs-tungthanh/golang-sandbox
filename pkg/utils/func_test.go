@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cstungthanh/sandbox/internal/utils"
+	"github.com/cstungthanh/sandbox/pkg/utils"
 )
 
 func TestMap(t *testing.T) {
